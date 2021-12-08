@@ -1,4 +1,5 @@
 import slideMenu from './menu.js';
+import { renderTopMovie } from './render.js';
 
 const slideMenuOptions = {
 	open: '.header__burger-btn',
@@ -7,3 +8,4 @@ const slideMenuOptions = {
 	className: 'navigation_active',
 };
 slideMenu(slideMenuOptions);
+renderTopMovie();
