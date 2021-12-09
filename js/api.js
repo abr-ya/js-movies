@@ -13,6 +13,12 @@ const getData = url =>
 
 export const getTrends = async (type = 'all', period = 'day', page = 1) => {
   const url = `${BASE_URL}trending/${type}/${period}?api_key=${API_KEY}${LANG}&page=${page}`;
-  const data = getData(url);
-  return data;
+  return getData(url);
+};
+
+// type: movie, tv
+// list: top_rated, popular
+export const getList = async (type = 'movies', list = 'top_rated', page = 1) => {
+  const url = `${BASE_URL}${type}/${list}?api_key=${API_KEY}${LANG}&page=${page}`;
+  return getData(url);
 };

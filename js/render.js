@@ -1,4 +1,4 @@
-import { getTrends } from './api.js';
+import { getTrends, getList } from './api.js';
 
 const renderTopMovie = (movie) => {
   const name = movie.name || movie.title;
@@ -25,7 +25,10 @@ const createImgPath = (fileName) => `https://www.themoviedb.org/t/p/w600_and_h90
 
 const renderCard = (item) => (`
   <li class="other-films__item">
-    <a class="other-films__link" data-rating="${item.vote_average}">
+    <a
+      class="other-films__link"
+      ${item.vote_average && `data-rating="${item.vote_average}"`}
+    >
       <img
         class="other-films__img"
         src="${createImgPath(item.poster_path)}"
@@ -42,12 +45,22 @@ const renderCards = (films) => {
   block.innerHTML = preHtml.join('\n');
 };
 
-export const getAndRenderTop = async () => {
-  const data = await getTrends();
-  const [movie, ...otherTop] = data.results;
-  otherTop.length = 12;
-  console.log("top", movie, otherTop);
+const renderPage = (data, otherTitle = 'другие фильмы ...') => {
+  const [topMovie, ...otherMovies] = data.results;
+  otherMovies.length = 12;
+  console.log("top", topMovie, otherMovies);
 
-  renderTopMovie(movie);
-  renderCards(otherTop);
+  renderTopMovie(topMovie);
+  renderCards(otherMovies);
+  document.querySelector('.other-films__title').textContent = otherTitle;
+}
+
+export const getAndRenderTrends = async () => {
+  const data = await getTrends();
+  renderPage(data);
+};
+
+export const getAndRenderTopTV = async () => {
+  const data = await getList('tv', 'top_rated');
+  renderPage(data);
 };

@@ -38,9 +38,7 @@
 
     <section class="other-films">
       <div class="container">
-        <h2 class="other-films__title">Другие фильмы
-          <span class="other-films__title-add">на Methed Cinema</span>
-        </h2>
+        <h2 class="other-films__title">...</h2>
 
         <ul class="other-films__list">
           <!-- хорошо бы заглушку или лоадер... -->
@@ -63,23 +61,23 @@
       <div class="footer__column subnav get-nav">
         <ul class="subnav__list">
           <li class="subnav__item">
-            <a href="#" class="subnav__link get-nav__link get-nav__link_triends">В тренде</a>
+            <a href="#" data-list="trend" class="subnav__link get-nav__link get-nav__link_triends">В тренде</a>
           </li>
 
           <li class="subnav__item">
-            <a href="#" class="subnav__link get-nav__link get-nav__link_popular-movies">Популярные Фильмы</a>
+            <a href="#" data-list="mv_pop" class="subnav__link get-nav__link get-nav__link_popular-movies">Популярные Фильмы</a>
           </li>
 
           <li class="subnav__item">
-            <a href="#" class="subnav__link get-nav__link get-nav__link_popular-tv">Популярные сериалы</a>
+            <a href="#" data-list="tv_pop" class="subnav__link get-nav__link get-nav__link_popular-tv">Популярные сериалы</a>
           </li>
 
           <li class="subnav__item">
-            <a href="#" class="subnav__link get-nav__link get-nav__link_top-movies">Top Фильмов</a>
+            <a href="#" data-list="mv_top" class="subnav__link get-nav__link get-nav__link_top-movies">Top Фильмов</a>
           </li>
 
           <li class="subnav__item">
-            <a href="#" class="subnav__link get-nav__link get-nav__link_top-tv">Top Сериалы</a>
+            <a href="#" data-list="tv_top" class="subnav__link get-nav__link get-nav__link_top-tv">Top Сериалы</a>
           </li>
         </ul>
       </div>
@@ -91,7 +89,7 @@
 
       <div class="footer__column partners">
         <img class="partners__me" src="img/me.svg" alt="Логотип MethEd">
-        <p class="partners__description">Исследования осуществляются ООО «МЕТЭД ДЕВЕЛОПМЕНТ» при&nbsp; поддержке Фонда «SPB Tech»</p>
+        <p class="partners__description">Исследования осуществляются ООО «РОГА И КОПЫТА ДЕВЕЛОПМЕНТ» при&nbsp; поддержке Фонда «SPB Tech»</p>
       </div>
     </div>
   </footer>
@@ -100,23 +98,23 @@
   <nav class="navigation">
     <ul class="navigation__list get-nav">
       <li class="navigation__item">
-        <a href="#" class="navigation__link get-nav__link get-nav__link_triends">В тренде</a>
+        <a href="#" data-list="trend" class="navigation__link get-nav__link get-nav__link_triends">В тренде</a>
       </li>
 
       <li class="navigation__item">
-        <a href="#" class="navigation__link get-nav__link get-nav__link_popular-movies">Популярные Фильмы</a>
+        <a href="#" data-list="mv_pop" class="navigation__link get-nav__link get-nav__link_popular-movies">Популярные Фильмы</a>
       </li>
 
       <li class="navigation__item">
-        <a href="#" class="navigation__link get-nav__link get-nav__link_popular-tv">Популярные сериалы</a>
+        <a href="#" data-list="tv_pop" class="navigation__link get-nav__link get-nav__link_popular-tv">Популярные сериалы</a>
       </li>
 
       <li class="navigation__item">
-        <a href="#" class="navigation__link get-nav__link get-nav__link_top-movies">Top Фильмов</a>
+        <a href="#" data-list="mv_top" class="navigation__link get-nav__link get-nav__link_top-movies">Top Фильмов</a>
       </li>
 
       <li class="navigation__item">
-        <a href="#" class="navigation__link get-nav__link get-nav__link_top-tv">Top Сериалы</a>
+        <a href="#" data-list="tv_top" class="navigation__link get-nav__link get-nav__link_top-tv">Top Сериалы</a>
       </li>
     </ul>
     <button class="navigation__close">
