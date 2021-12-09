@@ -1,12 +1,7 @@
 import { getTrends } from './api.js';
 
-export const renderTopMovie = async () => {
-  const data = await getTrends();
-  const movie = data.results[0];
-  console.log("top", movie);
-
+const renderTopMovie = (movie) => {
   const name = movie.name || movie.title;
-
   const content = `
     <div class="container film-week__container" data-rating="${movie.vote_average}">
       <div class="film-week__poster-wrapper">
@@ -21,8 +16,38 @@ export const renderTopMovie = async () => {
       <a class="film-week__watch-trailer tube" href="https://youtu.be/V0hagz_8L3M" aria-label="смотреть трейлер"></a>
     </div>  
   `;
-
   const block = document.querySelector('.film-week');
   //console.log(block);
   block.innerHTML = content;
+};
+
+const createImgPath = (fileName) => `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${fileName}`;
+
+const renderCard = (item) => (`
+  <li class="other-films__item">
+    <a class="other-films__link" data-rating="${item.vote_average}">
+      <img
+        class="other-films__img"
+        src="${createImgPath(item.poster_path)}"
+        alt="${item.name || item.title}"
+      >
+    </a>
+  </li>
+`);
+
+const renderCards = (films) => {
+  const block = document.querySelector('.other-films__list');
+  const preHtml = films.map(item => renderCard(item));
+  // console.log(preHtml);
+  block.innerHTML = preHtml.join('\n');
+};
+
+export const getAndRenderTop = async () => {
+  const data = await getTrends();
+  const [movie, ...otherTop] = data.results;
+  otherTop.length = 12;
+  console.log("top", movie, otherTop);
+
+  renderTopMovie(movie);
+  renderCards(otherTop);
 };
