@@ -1,4 +1,4 @@
-import { getAndRenderTopTV } from './render.js';
+import { getAndRenderCards } from './render.js';
 
 const slideMenu = ({open, close, links, menu, className}) => {
 	const burgerButton = document.querySelector(open);
@@ -13,8 +13,10 @@ const slideMenu = ({open, close, links, menu, className}) => {
 	linkButtons.forEach(item => {
 		item.addEventListener('click', (e) => {
       e.preventDefault();
-			nav.classList.remove(className);
-      console.log(e.target.dataset.list);
+      nav.classList.remove(className);
+      const key = e.target.dataset.list
+      console.log('to render', key);
+      getAndRenderCards(key);
 		});
 	});
 

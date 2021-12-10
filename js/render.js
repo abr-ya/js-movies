@@ -60,7 +60,19 @@ export const getAndRenderTrends = async () => {
   renderPage(data);
 };
 
-export const getAndRenderTopTV = async () => {
-  const data = await getList('tv', 'top_rated');
-  renderPage(data);
+const optReplace = (str) => {
+  if (str === 'mv') return 'movie';
+  if (str === 'pop') return 'popular';
+  if (str === 'top') return 'top_rated';
+  return str;
+};
+
+// type: movie, tv
+// list: top_rated, popular
+export const getAndRenderCards = async (key) => {
+  const [... listOpt] = key.split('_');
+  const listOptForRequest = listOpt.map(el => optReplace(el));
+  // console.log(listOptForRequest);
+  const data = await getList(...listOptForRequest);
+  if (data) renderPage(data);
 };
