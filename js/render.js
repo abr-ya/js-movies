@@ -17,7 +17,6 @@ const renderTopMovie = (movie) => {
     </div>  
   `;
   const block = document.querySelector('.film-week');
-  //console.log(block);
   block.innerHTML = content;
 };
 
@@ -48,7 +47,7 @@ const renderCards = (films) => {
 const renderPage = (data, otherTitle = 'другие фильмы ...') => {
   const [topMovie, ...otherMovies] = data.results;
   otherMovies.length = 12;
-  console.log("top", topMovie, otherMovies);
+  console.log("data for page: ", topMovie, otherMovies);
 
   renderTopMovie(topMovie);
   renderCards(otherMovies);
@@ -70,9 +69,13 @@ const optReplace = (str) => {
 // type: movie, tv
 // list: top_rated, popular
 export const getAndRenderCards = async (key) => {
-  const [... listOpt] = key.split('_');
-  const listOptForRequest = listOpt.map(el => optReplace(el));
-  // console.log(listOptForRequest);
-  const data = await getList(...listOptForRequest);
-  if (data) renderPage(data);
+  if (key === 'trend') {
+    getAndRenderTrends();
+  } else {
+    const [... listOpt] = key.split('_');
+    const listOptForRequest = listOpt.map(el => optReplace(el));
+    // console.log(listOptForRequest);
+    const data = await getList(...listOptForRequest);
+    if (data) renderPage(data);
+  }
 };

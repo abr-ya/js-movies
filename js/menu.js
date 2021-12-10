@@ -1,28 +1,39 @@
 import { getAndRenderCards } from './render.js';
 
-const slideMenu = ({open, close, links, menu, className}) => {
+const slideMenu = ({open, close, links, menu, menues, className}) => {
 	const burgerButton = document.querySelector(open);
 	const linkButtons = document.querySelectorAll(links);
 	const closeButton = document.querySelector(close);
-	const nav = document.querySelector(menu);
+	const topNav = document.querySelector(menu);
+	const bothNavs = document.querySelectorAll(menues);
+  console.log(topNav);
 
 	burgerButton.addEventListener('click', () => {
-		nav.classList.add(className);
+		topNav.classList.add(className);
 	});
 
 	linkButtons.forEach(item => {
-		item.addEventListener('click', (e) => {
-      e.preventDefault();
-      nav.classList.remove(className);
-      const key = e.target.dataset.list
-      console.log('to render', key);
-      getAndRenderCards(key);
+		item.addEventListener('click', () => {
+      topNav.classList.remove(className);
 		});
 	});
 
   closeButton.addEventListener('click', (e) => {
     e.preventDefault();
-    nav.classList.remove(className);
+    topNav.classList.remove(className);
+  });
+
+  bothNavs.forEach(nav => {
+    nav.addEventListener('click', (e) => {
+      const target = e.target.closest('.get-nav__link');
+
+      if (target) {
+        e.preventDefault();
+        const key = e.target.dataset.list
+        console.log('to render:', key);
+        getAndRenderCards(key);
+      }
+		});
   });
 };
 
@@ -31,6 +42,7 @@ const slideMenuOptions = {
 	close: '.navigation__close',
 	links: '.navigation__link',
 	menu: '.navigation',
+  menues: '.get-nav',
 	className: 'navigation_active',
 };
 
